@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de Facturas DGI</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header style="display:flex; align-items:center; justify-content:space-between; background:#085892; padding: 13px 20px;">
+  <!-- El logo lleva a la landing externa -->
+  <a href="inicio.html" id="logoInicio" style="display:inline-flex;align-items:center;text-decoration:none;color:inherit;">
+    <img src="logo.png" alt="Logo Servicios Integrales S.A." style="height:60px">
+    <h1 style="margin:0;">Servicios Integrales S.A.</h1>
+  </a>
+  <nav>
+    <ul style="display:flex;gap:26px;list-style:none;margin:0;padding:0;">
+      <li><a href="inicio.html" id="linkInicio" style="color:#fff;font-weight:700;text-decoration:none;">Inicio</a></li>
+      <li><a href="#" id="linkDocumentos" style="color:#fff;font-weight:700;text-decoration:none;">Registro Documentos</a></li>
+      <li><a href="#" id="linkProveedores" style="color:#fff;font-weight:700;text-decoration:none;">Registro Proveedores</a></li>
+      <li><a href="#" id="linkCategorias" style="color:#fff;font-weight:700;text-decoration:none;">Registro Categorías</a></li>
+      <li><a href="#" id="linkReportes" style="color:#fff;font-weight:700;text-decoration:none;">Reportes</a></li>
+    </ul>
+  </nav>
+</header>
+
+
+<section id="bienvenida">
+  <div style="display: flex; align-items: center; gap: 30px;">
+    <img src="logo.png" alt="Logo Servicios Integrales S.A." style="height:80px;border-radius:18px;box-shadow:0 2px 18px #3673a680;">
+    <div>
+      <h2 style="font-size:2.1em;color:#204a85;margin-bottom:9px;margin-top:0;">
+        ¡Bienvenido/a a Servicios Integrales S.A.!
+      </h2>
+      <p style="font-size:1.2em;color:#243850;margin-bottom:14px;">
+        Tu solución digital para el <span style="color:#4072c8;font-weight:600;">control eficiente de facturación</span>, compras y gestión de proveedores. 
+      </p>
+      <ul style="margin:0 0 12px 12px;font-size:1.13em;color:#144075;">
+        <li>Registro sencillo y seguro de tus documentos</li>
+        <li>Clasifica facturas por categorías y proveedores</li>
+        <li>Genera reportes automáticos y personalizados</li>
+      </ul>
+      <p style="font-weight:500;color:#228844;margin-top:12px;">
+        ¡Empieza ahora y lleva tu empresa al siguiente nivel!
+      </p>
+    </div>
+  </div>
+</section>
+
+
+    <section id="registroFacturas" style="display:none;">
+        <h2>Registro de Facturas</h2>
+        <form id="facturaForm">
+            <label for="fechaFactura">Fecha de la factura:</label>
+            <input type="date" id="fechaFactura" name="fechaFactura" required>
+
+            <label for="numeroFactura">Número de factura:</label>
+            <input type="text" id="numeroFactura" name="numeroFactura" required>
+
+            <label for="proveedor">Proveedor:</label>
+            <select id="proveedor" name="proveedor" required></select>
+
+            <label for="categoria">Tipo de factura:</label>
+            <select id="categoria" name="categoria" required></select>
+
+            <label for="subtotal">Subtotal:</label>
+            <input type="number" id="subtotal" name="subtotal" step="0.01" required>
+
+            <label for="itbms">ITBMS:</label>
+            <input type="number" id="itbms" name="itbms" step="0.01" required>
+
+            <label for="total">Total de Factura:</label>
+            <input type="number" id="total" name="total" readonly>
+
+            <div id="facturaMessage"></div>
+            <button type="submit">Registrar Factura</button>
+        </form>
+        <div id="tablaFacturas"></div>
+    </section>
+
+    <section id="registroProveedores" style="display:none;">
+        <h2>Registro de Proveedores</h2>
+        <form id="proveedorForm">
+            <label for="codigoProveedor">Código:</label>
+            <input type="text" id="codigoProveedor" name="codigoProveedor" required>
+
+            <label for="nombreProveedor">Nombre:</label>
+            <input type="text" id="nombreProveedor" name="nombreProveedor" required>
+
+            <label for="ruc">RUC:</label>
+            <input type="text" id="ruc" name="ruc">
+
+            <label for="digitoVerificador">DV:</label>
+            <input type="text" id="digitoVerificador" name="digitoVerificador">
+
+            <button type="submit">Registrar Proveedor</button>
+        </form>
+        <div id="tablaProveedores"></div>
+    </section>
+
+    <section id="registroCategorias" style="display:none;">
+        <h2>Registro de Categorías</h2>
+        <form id="categoriaForm">
+            <label for="categoriaNueva">Categoría:</label>
+            <input type="text" id="categoriaNueva" name="categoria" required>
+
+            <label for="descripcion">Descripción:</label>
+            <input type="text" id="descripcion" name="descripcion" required>
+
+            <button type="submit">Registrar Categoría</button>
+        </form>
+        <div id="tablaCategorias"></div>
+    </section>
+
+ <section id="reportes" style="display:none;">
+  <h2>Reportes</h2>
+  <div style="margin-bottom:18px;">
+    <label for="filtroFecha">Filtrar por fecha:</label>
+    <input type="date" id="filtroFecha">
+    <button id="btnFiltrar">Filtrar</button>
+    <button id="btnLimpiarFiltro">Limpiar Filtro</button>
+    <button id="btnExportarCSV">Exportar a CSV</button>
+  </div>
+  <div id="tablaReportes"></div>
+  <div id="sumaTotales" style="margin-top:12px;font-weight:bold;"></div>
+</section>
+
+</main>
+
+
+<footer style="background:#204a85; color:#fff; padding:22px 0 12px 0; text-align:center; margin-top:48px; border-radius: 0 0 8px 8px;">
+    <div style="margin-bottom:7px;">
+        &copy; 2025 Servicios Integrales S.A. &nbsp;|&nbsp;
+        <span style="color:#ffcc70;">Desarrollado por el equipo 4 </span>
+    </div>
+    <div style="font-size:0.93em; color:#d9ebfa;">
+        Sistema de Gestión Digital de Facturas - Universidad XYZ<br>
+        Contacto: info@serviciosintegralessa.com
+    </div>
+</footer>
+<script src="app.js"></script>
+</body>
+</html>
